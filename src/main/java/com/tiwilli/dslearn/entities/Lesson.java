@@ -2,6 +2,8 @@ package com.tiwilli.dslearn.entities;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -29,6 +31,12 @@ public abstract class Lesson {
             }
     )
     private Set<Enrollment> enrollmentsDone;
+
+    @OneToMany(mappedBy = "lesson")
+    private List<Deliver> deliveries = new ArrayList<>();
+
+    @OneToMany(mappedBy = "lesson")
+    private List<Topic> topics = new ArrayList<>();
 
     public Lesson() {
     }
@@ -74,6 +82,14 @@ public abstract class Lesson {
 
     public Set<Enrollment> getEnrollmentsDone() {
         return enrollmentsDone;
+    }
+
+    public List<Deliver> getDeliveries() {
+        return deliveries;
+    }
+
+    public List<Topic> getTopics() {
+        return topics;
     }
 
     @Override
