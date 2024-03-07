@@ -2,6 +2,7 @@ package com.tiwilli.dslearn.services;
 
 import com.tiwilli.dslearn.dto.OfferDTO;
 import com.tiwilli.dslearn.entities.Offer;
+import com.tiwilli.dslearn.repositories.EnrollmentRepository;
 import com.tiwilli.dslearn.repositories.OfferRepository;
 import com.tiwilli.dslearn.services.exceptions.DatabaseException;
 import com.tiwilli.dslearn.services.exceptions.ResourceNotFoundException;
@@ -19,6 +20,12 @@ public class OfferService {
 
     @Autowired
     private OfferRepository repository;
+
+    @Autowired
+    private EnrollmentRepository enrollmentRepository;
+
+    @Autowired
+    private UserService userService;
 
     @Transactional(readOnly = true)
     public OfferDTO findById(Long id) {
@@ -67,6 +74,7 @@ public class OfferService {
             throw new DatabaseException("Falha de integridade referencial");
         }
     }
+
 
     private void copyDtoToEntity(OfferDTO dto, Offer entity) {
         entity.setEdition(dto.getEdition());

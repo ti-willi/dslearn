@@ -30,7 +30,8 @@ INSERT INTO tb_section (title, description, position, img_uri, resource_id, prer
 INSERT INTO tb_section (title, description, position, img_uri, resource_id, prerequisite_id) VALUES ('Capítulo 3', 'Neste capítulo vamos finalizar', 3, 'https://www.publicdomainpictures.net/pictures/190000/velka/travel-background-1469438300Bbk.jpg', 1, 2)
 
 INSERT INTO tb_enrollment (user_id, offer_id, enroll_moment, refund_moment, available, only_update) VALUES (1, 1, TIMESTAMP WITH TIME ZONE '2020-07-13T13:00:07.12345Z', null, true, false)
-INSERT INTO tb_enrollment (user_id, offer_id, enroll_moment, refund_moment, available, only_update) VALUES (2, 1, TIMESTAMP WITH TIME ZONE '2020-07-13T13:00:07.12345Z', null, true, false)
+INSERT INTO tb_enrollment (user_id, offer_id, enroll_moment, refund_moment, available, only_update) VALUES (2, 1, TIMESTAMP WITH TIME ZONE '2020-07-16T13:00:07.12345Z', null, true, false)
+INSERT INTO tb_enrollment (user_id, offer_id, enroll_moment, refund_moment, available, only_update) VALUES (2, 2, TIMESTAMP WITH TIME ZONE '2020-10-16T13:00:07.12345Z', null, true, false)
 
 INSERT INTO tb_lesson (title, position, section_id) VALUES ('Aula 1 do capítulo', 1, 1)
 INSERT INTO tb_content (id, text_content, video_uri) VALUES (1, 'Material de apoio', 'https://www.youtube.com/watch?v=D4frmIHAxEY')
