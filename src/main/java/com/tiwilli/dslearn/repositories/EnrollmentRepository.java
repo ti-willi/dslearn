@@ -16,6 +16,7 @@ public interface EnrollmentRepository extends JpaRepository<Enrollment, Enrollme
 
     @Query("""
             SELECT DISTINCT obj FROM Enrollment obj
+            JOIN FETCH obj.id.offer
             WHERE obj.id.user.id = :userId
                         
             """)

@@ -1,11 +1,9 @@
 package com.tiwilli.dslearn.services;
 
-import com.tiwilli.dslearn.dto.OfferDTO;
+import com.tiwilli.dslearn.dto.CourseDTO;
 import com.tiwilli.dslearn.entities.Course;
-import com.tiwilli.dslearn.entities.Offer;
-import com.tiwilli.dslearn.repositories.CourseRepository;
 import com.tiwilli.dslearn.repositories.EnrollmentRepository;
-import com.tiwilli.dslearn.repositories.OfferRepository;
+import com.tiwilli.dslearn.repositories.CourseRepository;
 import com.tiwilli.dslearn.services.exceptions.DatabaseException;
 import com.tiwilli.dslearn.services.exceptions.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
@@ -18,49 +16,46 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class OfferService {
+public class CourseService {
 
     @Autowired
-    private OfferRepository repository;
+    private CourseRepository repository;
 
     @Autowired
     private EnrollmentRepository enrollmentRepository;
 
     @Autowired
-    private CourseRepository courseRepository;
-
-    @Autowired
     private UserService userService;
 
     @Transactional(readOnly = true)
-    public OfferDTO findById(Long id) {
-        Offer Offer = repository.findById(id).orElseThrow(
+    public CourseDTO findById(Long id) {
+        Course Course = repository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("Recurso não encontrado")
         );
-        return new OfferDTO(Offer);
+        return new CourseDTO(Course);
     }
 
     @Transactional(readOnly = true)
-    public Page<OfferDTO> findAll(Pageable pageable) {
-        Page<Offer> result = repository.findAll(pageable);
-        return result.map(OfferDTO::new);
+    public Page<CourseDTO> findAll(Pageable pageable) {
+        Page<Course> result = repository.findAll(pageable);
+        return result.map(CourseDTO::new);
     }
 
     @Transactional
-    public OfferDTO insert(OfferDTO dto) {
-        Offer entity = new Offer();
+    public CourseDTO insert(CourseDTO dto) {
+        Course entity = new Course();
         copyDtoToEntity(dto, entity);
         entity = repository.save(entity);
-        return new OfferDTO(entity);
+        return new CourseDTO(entity);
     }
 
     @Transactional
-    public OfferDTO update(Long id, OfferDTO dto) {
+    public CourseDTO update(Long id, CourseDTO dto) {
         try {
-            Offer entity = repository.getReferenceById(id);
+            Course entity = repository.getReferenceById(id);
             copyDtoToEntity(dto, entity);
             entity = repository.save(entity);
-            return new OfferDTO(entity);
+            return new CourseDTO(entity);
         }
         catch (EntityNotFoundException e) {
             throw new ResourceNotFoundException("Recurso não encontrado");
@@ -81,15 +76,10 @@ public class OfferService {
     }
 
 
-    private void copyDtoToEntity(OfferDTO dto, Offer entity) {
-        entity.setEdition(dto.getEdition());
-        entity.setStartMoment(dto.getStartMoment());
-        entity.setEndMoment(dto.getEndMoment());
-
-        Course course = courseRepository.findById(dto.getCourseId()).orElseThrow(
-                () -> new ResourceNotFoundException("Recurso não encontrado"));
-
-        entity.setCourse(course);
+    private void copyDtoToEntity(CourseDTO dto, Course entity) {
+        entity.setName(dto.getName());
+        entity.setImgUri(dto.getImgUri());
+        entity.setImgGrayUri(dto.getImgGrayUri());
     }
 
 }

@@ -1,6 +1,7 @@
 package com.tiwilli.dslearn.controllers;
 
 import com.tiwilli.dslearn.dto.EnrollmentDTO;
+import com.tiwilli.dslearn.dto.OfferDTO;
 import com.tiwilli.dslearn.services.EnrollmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,16 +11,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "enrollments")
+@RequestMapping(value = "/my-enrollments")
 public class EnrollmentController {
 
     @Autowired
     private EnrollmentService service;
 
     @PreAuthorize("hasAnyRole('ROLE_STUDENT')")
-    @GetMapping("/my-enrollments")
-    public ResponseEntity<List<EnrollmentDTO>> findAll() {
-        List<EnrollmentDTO> dto = service.findByUser();
+    @GetMapping("/courses")
+    public ResponseEntity<List<OfferDTO>> findAll() {
+        List<OfferDTO> dto = service.findMyEnrollments();
         return ResponseEntity.ok(dto);
     }
 
