@@ -12,7 +12,7 @@ public class CourseDTO {
     private String imgUri;
     private String imgGrayUri;
 
-    List<OfferDTO> offers = new ArrayList<>();
+    private List<OfferDTO> offers = new ArrayList<>();
 
     public CourseDTO(Long id, String name, String imgUri, String imgGrayUri) {
         this.id = id;

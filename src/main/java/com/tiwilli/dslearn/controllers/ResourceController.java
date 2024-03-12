@@ -1,7 +1,7 @@
 package com.tiwilli.dslearn.controllers;
 
-import com.tiwilli.dslearn.dto.OfferDTO;
-import com.tiwilli.dslearn.services.OfferService;
+import com.tiwilli.dslearn.dto.ResourceDTO;
+import com.tiwilli.dslearn.services.ResourceService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -13,26 +13,26 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 
 @RestController
-@RequestMapping(value = "/offers")
-public class OfferController {
+@RequestMapping(value = "/resources")
+public class ResourceController {
 
     @Autowired
-    private OfferService service;
+    private ResourceService service;
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<OfferDTO> findById(@PathVariable Long id) {
-        OfferDTO dto = service.findById(id);
+    public ResponseEntity<ResourceDTO> findById(@PathVariable Long id) {
+        ResourceDTO dto = service.findById(id);
         return ResponseEntity.ok(dto);
     }
 
     @GetMapping
-    public ResponseEntity<Page<OfferDTO>> findAll(Pageable pageable) {
-        Page<OfferDTO> dto = service.findAll(pageable);
+    public ResponseEntity<Page<ResourceDTO>> findAll(Pageable pageable) {
+        Page<ResourceDTO> dto = service.findAll(pageable);
         return ResponseEntity.ok(dto);
     }
 
     @PostMapping
-    public ResponseEntity<OfferDTO> insert(@Valid @RequestBody OfferDTO dto) {
+    public ResponseEntity<ResourceDTO> insert(@Valid @RequestBody ResourceDTO dto) {
         dto = service.insert(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(dto.getId()).toUri();
@@ -40,7 +40,7 @@ public class OfferController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<OfferDTO> update(@PathVariable Long id, @Valid @RequestBody OfferDTO dto) {
+    public ResponseEntity<ResourceDTO> update(@PathVariable Long id, @Valid @RequestBody ResourceDTO dto) {
         dto = service.update(id, dto);
         return ResponseEntity.ok(dto);
     }
@@ -50,6 +50,5 @@ public class OfferController {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
-
 
 }

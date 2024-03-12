@@ -22,7 +22,7 @@ INSERT INTO tb_offer (edition, start_moment, end_moment, course_id) VALUES ('1.0
 INSERT INTO tb_offer (edition, start_moment, end_moment, course_id) VALUES ('2.0', TIMESTAMP WITH TIME ZONE '2020-10-13T20:50:07.12345Z', TIMESTAMP WITH TIME ZONE '2021-10-13T20:50:07.12345Z', 1);
 
 INSERT INTO tb_resource (title, description, position, img_uri, type, offer_id) VALUES ('Trilha HTML', 'Trilha principal do curso', 1, 'https://www.publicdomainpictures.net/pictures/190000/velka/travel-background-1469438300Bbk.jpg', 1, 1);
-INSERT INTO tb_resource (title, description, position, img_uri, type, offer_id) VALUES ('Fórum', 'Tire suas dúvidas', 2, 'https://www.publicdomainpictures.net/pictures/190000/velka/travel-background-1469438300Bbk.jpg', 2, 1);
+INSERT INTO tb_resource (title, description, position, img_uri, type, offer_id) VALUES ('Fórum', 'Tire suas dúvidas', 2, 'https://www.publicdomainpictures.net/pictures/190000/velka/travel-background-1469438300Bbk.jpg', 2, 2);
 INSERT INTO tb_resource (title, description, position, img_uri, type, offer_id) VALUES ('Lives', 'Lives exclusivas para a turma', 3, 'https://www.publicdomainpictures.net/pictures/190000/velka/travel-background-1469438300Bbk.jpg', 0, 1);
 
 INSERT INTO tb_section (title, description, position, img_uri, resource_id, prerequisite_id) VALUES ('Capítulo 1', 'Neste capítulo vamos começar', 1, 'https://www.publicdomainpictures.net/pictures/190000/velka/travel-background-1469438300Bbk.jpg', 1, null)

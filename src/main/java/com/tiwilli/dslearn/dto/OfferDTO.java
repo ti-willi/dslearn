@@ -3,6 +3,8 @@ package com.tiwilli.dslearn.dto;
 import com.tiwilli.dslearn.entities.Offer;
 
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 public class OfferDTO {
 
@@ -11,6 +13,8 @@ public class OfferDTO {
     private Instant startMoment;
     private Instant endMoment;
     private Long courseId;
+
+    private List<ResourceDTO> resources = new ArrayList<>();
 
     public OfferDTO(Long id, String edition, Instant startMoment, Instant endMoment, Long courseId) {
         this.id = id;
@@ -26,6 +30,7 @@ public class OfferDTO {
         startMoment = entity.getStartMoment();
         endMoment = entity.getEndMoment();
         courseId = entity.getCourse().getId();
+        entity.getResources().forEach(resource -> this.resources.add(new ResourceDTO(resource)));
     }
 
     public Long getId() {
@@ -46,5 +51,9 @@ public class OfferDTO {
 
     public Long getCourseId() {
         return courseId;
+    }
+
+    public List<ResourceDTO> getResources() {
+        return resources;
     }
 }
